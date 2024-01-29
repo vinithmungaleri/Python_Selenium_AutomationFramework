@@ -1,6 +1,8 @@
 import pytest
 from selenium import webdriver
 import time
+from selenium.webdriver.chrome.service import Service
+
 driver = None
 
 def pytest_addoption(parser):
@@ -14,11 +16,12 @@ def setup(request):
     global driver
     browser_name=request.config.getoption("browser_name")
     if browser_name == "chrome":
-        driver = webdriver.Chrome(executable_path="C:\\chromedriver.exe")
+        # service_obj = Service("path")
+        driver = webdriver.Chrome()
     elif browser_name == "firefox":
-        driver = webdriver.Firefox(executable_path="C:\\geckodriver.exe")
-    elif browser_name == "IE":
-        print("IE driver")
+        driver = webdriver.Firefox()
+    elif browser_name == "EDGE":
+        driver = webdriver.Edge()
     driver.get("https://rahulshettyacademy.com/angularpractice/")
     driver.maximize_window()
 
